@@ -10,7 +10,7 @@ import styles from "./countryDetail.module.scss"
 import {motion} from "framer-motion"
 import Link from "next/link";
 
-const testPage:NextPage = () => {
+const TestPage:NextPage = () => {
     const router = useRouter()
 
     const handleGetBack = ()=>{
@@ -54,4 +54,4 @@ const testPage:NextPage = () => {
     </AnimatedPage>)
 }
 
-export default testPage
+export default TestPage

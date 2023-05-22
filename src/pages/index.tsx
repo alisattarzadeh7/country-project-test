@@ -115,8 +115,7 @@ export const getStaticProps: GetStaticProps<{
   allCountries: Country[];
 }> = async () => {
   // const allCountries = await CountryController.getAllCountries(qs.stringify({fields: 'name,flags,cca2'}));
-  const allCountries = []
-  return { props: { allCountries } };
+  return { props: { allCountries:[] } };
 };
 
 export default Home

@@ -2,7 +2,7 @@ import Image from "next/image";
 import serverErrorImage from "~/src/assets/images/serverError.svg"
 function Error({ statusCode }) {
     return (
-        <div className="w-full h-[80%]">
+        <div className="w-full h-[80%] relative">
             <Image src={serverErrorImage} alt="server error icon" />
             {statusCode && `An error ${statusCode} occurred on server`}
         </div>
