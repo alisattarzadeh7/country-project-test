@@ -14,13 +14,22 @@ const SearchBar: React.FC<ISearchBarProps> = ({handleFilterList}) => {
     const router = useRouter()
     const countryName = router.query.countryName as string ?? null
     const [name,setName] = useState(countryName)
-    const [value] = useDebounce(countryName, 500);
+    const [value] = useDebounce(name, 500);
 
     useCountriesByName(value, {
         enabled: !!value,
         onSuccess:(d)=> handleFilterList(d)
     })
 
+    useEffect(()=>{
+        if(value){
+            router.replace(router.pathname,{
+                query:value ? {countryName:value} : undefined
+            },{
+                shallow:true,
+            })
+        }
+    },[value])
 
     useEffect(()=>{
         if(countryName)
@@ -28,9 +37,7 @@ const SearchBar: React.FC<ISearchBarProps> = ({handleFilterList}) => {
     },[countryName])
 
     const handleSearch =  (e:any) => {
-            router.replace(router.pathname,{
-                query:e.target.value ? {countryName:e.target.value} : undefined
-            })
+
             setName(e.target.value)
         }
 

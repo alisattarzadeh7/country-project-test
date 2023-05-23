@@ -11,6 +11,7 @@ import {GetStaticProps, NextPage} from "next";
 import SearchBar from "~/components/SearchBar";
 import RegionSelect from "~/components/RegionSelect";
 import AnimatedPage from "~/components/AnimatedPage";
+import SortSelect from "~/components/SortSelect";
 
 const animationVariant = {
   hidden: {
@@ -67,13 +68,17 @@ const Home:NextPage<IHomeProps> = ({allCountries}) => {
   },[])
 
   return (
-      <AnimatedPage>
+      <>
+        <Link href="/testPage">go to testPage</Link>
         <Grid container  justifyContent="space-between">
           <Grid item xs={12} md={5} mt={3}>
             <SearchBar  handleFilterList={handleFilterList} />
           </Grid>
-          <Grid item xs={12} md={5} mt={3} container className="xs:justify-start md:justify-end" >
-            <RegionSelect />
+          <Grid item xs={12} md={7}  lg={5} container className="xs:justify-start md:justify-end" >
+            <Grid xs={12} md={6} mt={3} item container className="xs:justify-start md:justify-end" ><SortSelect /></Grid>
+            <Grid xs={12} md={6} mt={3} item container className="xs:justify-start md:justify-end" ><RegionSelect /></Grid>
+
+
           </Grid>
         </Grid>
         {
@@ -107,7 +112,7 @@ const Home:NextPage<IHomeProps> = ({allCountries}) => {
             </motion.div>
         }
         <div ref={ref}/>
-      </AnimatedPage>
+      </>
   )
 }
 

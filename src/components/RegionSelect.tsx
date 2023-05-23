@@ -14,6 +14,7 @@ const RegionSelect: React.FC = () => {
     return (  <FormControl sx={{  minWidth: 250 }}>
         <InputLabel id="demo-simple-select-label">Filter by Region</InputLabel>
         <Select
+            role="get-by-region"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={age}

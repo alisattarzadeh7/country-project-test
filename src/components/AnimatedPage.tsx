@@ -4,17 +4,20 @@ import { motion } from 'framer-motion';
 const pageVariants = {
     initial: {
         opacity: 0,
-        y: 30,
+        y: 50,
     },
     in: {
         opacity: 1,
         y: 0,
+        transition: {
+            duration: 0.2,
+        },
     },
     out: {
         opacity: 0,
-        scale: 1.2,
+        y: 50,
         transition: {
-            duration: 0.5,
+            duration: 0.2,
         },
     },
 };
@@ -30,6 +33,7 @@ const AnimatedPage:React.FC<IAnimatedPageProps> = ({ children,...props }) =>{
             animate="in"
             exit="out"
             variants={pageVariants}
+            className="h-full w-full"
             {...props}
         >
             { children }

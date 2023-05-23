@@ -1,9 +1,12 @@
 import React, {ReactNode} from "react"
-import {AppBar, Box, Toolbar, useTheme} from "@mui/material";
+import {AppBar, Box, Button, Grid, Toolbar, useTheme} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {useLayoutContext} from "~/src/Utils/Contexts/LayoutContext";
 import Script from "next/script";
-
+import {motion} from "framer-motion"
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import NextNProgress from "nextjs-progressbar";
 interface IMasterLayoutProps{
     children:ReactNode
 }
@@ -11,15 +14,34 @@ interface IMasterLayoutProps{
 const MasterLayout:React.FC<IMasterLayoutProps> = ({children})=>{
     const {layout,layoutSetter} = useLayoutContext()
     const theme = useTheme()
-    return (<>
-        <AppBar>
-            <Toolbar>
-                <Typography variant="h6" component="div">
-                    <button  onClick={()=>layoutSetter({mode:layout.mode === 'light' ? 'dark' : 'light'})}>change theme </button>
-                </Typography>
+
+    const handleChangeTheme = ()=>{
+        layoutSetter({mode:layout.mode === 'light' ? 'dark' : 'light'})
+    }
+
+
+    return (<div className="w-screen h-screen flex flex-col">
+        <AppBar position="static" sx={{p:2,height:80}}>
+            <Toolbar variant="dense">
+                <Grid container justifyContent="space-between">
+                    <Typography variant="h5" color="inherit" component="div" fontWeight="bolder">
+                        Where in the world?
+                    </Typography>
+                    <Button variant="text" sx={{boxShadow:'unset',border:'unset'}} onClick={handleChangeTheme} style={{textTransform: "capitalize",color:theme.palette.primary[layout.mode === 'light' ? 'dark' : 'light']}}>
+                        <Typography color="inherit" component="span" fontWeight="bolder" ><Grid container justifyContent="center" alignItems="center">
+                            {layout.mode === 'light' ?
+                                <>
+                                    <motion.div style={{height:24}} animate={{rotate:360,transition:{duration:0.3}}}><DarkModeOutlinedIcon/></motion.div> dark
+                                </> : <>
+                                    <motion.div style={{height:24}} animate={{rotate:-360,transition:{duration:0.3}}}><DarkModeIcon/></motion.div>
+                                    light
+                                </> }
+                            &nbsp;Mode</Grid></Typography>
+                    </Button>
+                </Grid>
             </Toolbar>
         </AppBar>
-       <Box p={4} bgcolor={theme.palette.primary[layout.mode]}>
+       <Box p={4} px={6} bgcolor={theme.palette.primary[layout.mode]} className="flex-1">
            {children}
        </Box>
         <Script
@@ -35,7 +57,7 @@ const MasterLayout:React.FC<IMasterLayoutProps> = ({children})=>{
           gtag('config', 'GA_MEASUREMENT_ID');
         `}
         </Script>
-    </>)
+    </div>)
 }
 
 

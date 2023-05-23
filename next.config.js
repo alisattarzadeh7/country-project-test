@@ -14,7 +14,7 @@ const nextConfig = {
           contentSecurityPolicy:{
             "default-src": ["'self'"],
             "img-src": ["'self'","data:","https://flagcdn.com","https://www.google-analytics.com","https://www.googletagmanager.com"],
-            "connect-src":["'self'","https://flagcdn.com","https://www.google-analytics.com","https://region1.google-analytics.com"],
+            "connect-src":["'self'","https://flagcdn.com","https://restcountries.com","https://www.google-analytics.com","https://region1.google-analytics.com"],
             "font-src": ["'self'","data:"],
             "style-src": ["'self'","'unsafe-inline'","'unsafe-eval'" ,"'strict-dynamic'"],
             "base-uri": "'none'",
@@ -44,6 +44,7 @@ const nextConfig = {
       },
     ],
   },
+  output: 'standalone',
   reactStrictMode: true,
 }
 

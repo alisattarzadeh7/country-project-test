@@ -6,23 +6,6 @@ interface IMuiProviderProps {
     children: ReactElement
 }
 
-// const theme = createTheme({
-//     palette:{
-//       // mode:'dark'
-//     },
-//     components: {
-//         MuiAppBar: {
-//             styleOverrides: {
-//                 root: {
-//                 },
-//             },
-//         },
-//     },
-// });
-
-
-
-
 const colorPalette = {
     primary:{
         main:'#FFFFFF',
@@ -34,22 +17,35 @@ const colorPalette = {
         dark:'#212E37',
         light:'#FFFFFF',
     },
+
+}
+
+
+const textColor = {
+    dark:{
+        primary: '#FFFFFF'
+    },
+    light:{
+        primary: '#212E37'
+    },
 }
 
 const MuiProvider: React.FC<IMuiProviderProps> = ({children}) => {
     const {layout} = useLayoutContext()
+    const boxShadow = `0px 0px 8px 0px ${layout.mode === 'light' ? '#cbcbcb' : 'rgba(0,0,0,0.19)'}`
     const theme = React.useMemo(() =>
             createTheme({
                 palette: {
                     mode:layout.mode,
                     ...colorPalette,
+                    text:textColor[layout.mode]
                 },
                 components:{
                     MuiAppBar:{
                         styleOverrides:{
                             root:{
                                 background:colorPalette.primary[layout.mode],
-                                boxShadow:`0px 2px 9px -3px ${layout.mode === 'light' ? '#cbcbcb' : 'black'}`,
+                                boxShadow:`0px 2px 9px -3px ${layout.mode === 'light' ? '#cbcbcb' : 'rgba(0,0,0,0.32)'}`,
                                 position:'relative'
                             }
                         }
@@ -58,7 +54,7 @@ const MuiProvider: React.FC<IMuiProviderProps> = ({children}) => {
                         styleOverrides:{
                             root:{
                                 background:colorPalette.primary[layout.mode],
-                                boxShadow:`0px 0px 9px 0px ${layout.mode === 'light' ? '#e5e5e5' : '#454545'}`
+                                boxShadow
                             }
                         }
                     },
@@ -68,7 +64,7 @@ const MuiProvider: React.FC<IMuiProviderProps> = ({children}) => {
                                 border:'unset !important',
                                 outline:'unset',
                                 background:colorPalette.primary[layout.mode],
-                                boxShadow:`0px 0px 9px 0px ${layout.mode === 'light' ? '#e5e5e5' : '#454545'}`,
+                                boxShadow,
                                 '& fieldset':{
                                     border:'unset !important',
                                 }
@@ -79,14 +75,15 @@ const MuiProvider: React.FC<IMuiProviderProps> = ({children}) => {
                         styleOverrides:{
                             paper:{
                                 background:colorPalette.primary[layout.mode],
-                                boxShadow:`0px 0px 9px 0px ${layout.mode === 'light' ? '#e5e5e5' : '#454545'}`,
+                                boxShadow,
                             }
                         }
                     },
                     MuiButton:{
                         styleOverrides:{
                             root:{
-                                boxShadow:`0px 0px 9px 0px ${layout.mode === 'light' ? '#e5e5e5' : '#454545'}`,
+                                boxShadow,
+                                border:`solid 1px ${layout.mode === 'light' ? 'rgba(203,203,203,0.31)' : 'rgba(0,0,0,0.19)'}`
                             }
                         }
                     }

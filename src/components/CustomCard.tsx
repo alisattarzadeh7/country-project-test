@@ -23,7 +23,7 @@ const CustomCard:React.FC<ICustomCardProps> = ({image,title,children,...props})=
         {/*    />*/}
         {/*}*/}
         {
-            image && <div className="w-full h-[62.5%]">
+            image && <div className="aspect-[4/3] relative">
                 <Image fill  src={image} alt={`image of ${title}`}/>
             </div>
         }
