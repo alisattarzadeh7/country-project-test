@@ -5,7 +5,6 @@ import "~/src/global.scss"
 import {useRouter} from "next/router";
 import {AnimatePresence} from "framer-motion";
 import AnimatedPage from "~/components/AnimatedPage";
-import NextNProgress from 'nextjs-progressbar';
 
 export default function App({Component, pageProps}: AppProps) {
     const router = useRouter();

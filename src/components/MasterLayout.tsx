@@ -6,7 +6,6 @@ import Script from "next/script";
 import {motion} from "framer-motion"
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import NextNProgress from "nextjs-progressbar";
 interface IMasterLayoutProps{
     children:ReactNode
 }
